@@ -2,8 +2,6 @@
 // Piano Sampler and Sound Setup
 // ————————————————————————————————————————————————————
 
-const { log } = require("tone/build/esm/core/util/Debug");
-
 // Load piano samples (Salamander public piano library)
 const piano = new Tone.Sampler({
   urls: {
@@ -16,7 +14,7 @@ const piano = new Tone.Sampler({
   baseUrl: "https://tonejs.github.io/audio/salamander/",
 });
 
-// Smooth, warm bass synth
+// Smooth - warm bass synth
 const bass = new Tone.MonoSynth({
   oscillator: { type: "sine" },
   envelope: { attack: 0.02, decay: 0.2, sustain: 0.7, release: 1.5 },
@@ -39,6 +37,7 @@ bass.connect(hall);
 // ————————————————————————————————————————————————————
 // Chord progression (Canon in D style)
 // ————————————————————————————————————————————————————
+
 // Root notes of each measure
 const chordRoots = ["D4", "A3", "B3", "F#3", "G3", "D3", "G3", "A3"];
 // Full triads for reference
@@ -53,11 +52,13 @@ const chords = [
   ["A3", "C#4", "E4"],
 ];
 
-const measures = 8; // total length = 8 measures
+// total length=8 measures
+const measures = 8;
 
 // ————————————————————————————————————————————————————
 // Arpeggio generator
 // ————————————————————————————————————————————————————
+
 // Returns a sequence of 8 notes for one bar
 function arpNotesForChord(chord) {
   const [p1, p2, p3] = chord;
@@ -75,45 +76,46 @@ for (let i = 0; i < measures; i++) {
 
 // ————————————————————————————————————————————————————
 // Melody (main voice) — simplified Canon-style
-// A second voice enters 2 bars later (canon effect)
 // ————————————————————————————————————————————————————
+
+// A second voice enters 2 bars later (canon effect)
 const melody = [
-  // Measure 1
+  //measure 1
   { time: "0:0", note: "F#4", dur: "8n" },
   { time: "0:1", note: "A4", dur: "8n" },
   { time: "0:2", note: "D5", dur: "8n" },
   { time: "0:3", note: "C#5", dur: "8n" },
-  // Measure 2
+  //measure 2
   { time: "1:0", note: "B4", dur: "8n" },
   { time: "1:1", note: "A4", dur: "8n" },
   { time: "1:2", note: "G4", dur: "8n" },
   { time: "1:3", note: "F#4", dur: "8n" },
-  // Measure 3
+  //measure 3
   { time: "2:0", note: "F#4", dur: "8n" },
   { time: "2:1", note: "D4", dur: "8n" },
   { time: "2:2", note: "B4", dur: "8n" },
   { time: "2:3", note: "A4", dur: "8n" },
-  // Measure 4
+  //measure 4
   { time: "3:0", note: "C#5", dur: "8n" },
   { time: "3:1", note: "B4", dur: "8n" },
   { time: "3:2", note: "A4", dur: "8n" },
   { time: "3:3", note: "F#4", dur: "8n" },
-  // Measure 5
+  //measure 5
   { time: "4:0", note: "G4", dur: "8n" },
   { time: "4:1", note: "B4", dur: "8n" },
   { time: "4:2", note: "D5", dur: "8n" },
   { time: "4:3", note: "C#5", dur: "8n" },
-  // Measure 6
+  //measure 6
   { time: "5:0", note: "A4", dur: "8n" },
   { time: "5:1", note: "F#4", dur: "8n" },
   { time: "5:2", note: "D4", dur: "8n" },
   { time: "5:3", note: "B4", dur: "8n" },
-  // Measure 7
+  //measure 7
   { time: "6:0", note: "G4", dur: "8n" },
   { time: "6:1", note: "A4", dur: "8n" },
   { time: "6:2", note: "B4", dur: "8n" },
   { time: "6:3", note: "C#5", dur: "8n" },
-  // Measure 8 (ending)
+  //measure 8 (ending)
   { time: "7:0", note: "A4", dur: "4n" },
   { time: "7:2", note: "D5", dur: "2n" },
 ];
@@ -175,8 +177,9 @@ bassPart.loop = true;
 bassPart.loopEnd = `${measures}m`;
 
 // ————————————————————————————————————————————————————
-// UI Controls (Play / Stop / BPM slider)
+// UI/UX For Controls (Play / Stop / BPM slider)
 // ————————————————————————————————————————————————————
+
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const bpmSlider = document.getElementById("bpm");
@@ -199,7 +202,6 @@ startBtn.addEventListener("click", async () => {
   secondPart.start(0);
   arpPart.start(0);
   bassPart.start(0);
-
   Tone.Destination.volume.value = -12;
   Tone.Transport.start();
   startBtn.disabled = true;
@@ -221,4 +223,4 @@ stopBtn.addEventListener("click", () => {
 piano.toDestination();
 bass.toDestination();
 
-console.log("Canon in D prepared. Click Start to play.");
+console.log("Canon in D prepared;Please click Start to play.");
