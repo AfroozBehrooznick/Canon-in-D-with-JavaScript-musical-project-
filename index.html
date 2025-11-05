@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Canon in D</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="node_modules/tone/build/Tone.js"></script>
+
+    <!----------------------------------------------------->
+    <!--                     styles                      -->
+    <!----------------------------------------------------->
+    <style>
+      body {
+        font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        text-align: center;
+        padding: 129px;
+        background: linear-gradient(#613b82, #071126);
+        color: #ffffff;
+      }
+      button {
+        padding: 12px 18px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin: 8px;
+      }
+      .controls {
+        margin-top: 18px;
+      }
+      .info {
+        max-width: 720px;
+        margin: 18px auto;
+        color: #7e8183;
+      }
+      #creator {
+        color: #7e8183;
+      }
+    </style>
+  </head>
+  <body>
+    <!----------------------------------------------------->
+    <!--                   main body                     -->
+    <!----------------------------------------------------->
+
+    <h1 style="font-size: 50px">"Canon in D(Pachelbel)" with Tone.js</h1>
+    <br />
+    <p class="info">
+      This performance formed: sampled piano + root bass + accompanying arpeggio
+      + two-part canon. Note: abridged version for listening and learning
+    </p>
+    <br />
+    <div class="controls">
+      <button id="startBtn">▶ START</button>
+      <button id="stopBtn" disabled>■ STOP</button>
+      <br /><br />
+      <label style="margin-left: 10px">
+        Speed (BPM):
+        <input id="bpm" type="range" min="40" max="90" value="60" />
+        <span id="bpmVal">60</span> </label
+      ><br /><br />
+      <p id="creator">created by Afrooz Behrooznick</p>
+    </div>
+
+    <!----------------------------------------------------->
+    <!--                     script                      -->
+    <!----------------------------------------------------->
+    <script src="main.js"></script>
+  </body>
+</html>
